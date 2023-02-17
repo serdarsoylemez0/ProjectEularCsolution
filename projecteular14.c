@@ -1,4 +1,6 @@
 #include <stdio.h>
+# include<time.h>
+
 int collatz( long long int num)
 {
     if (num == 1)
@@ -17,8 +19,11 @@ int collatz( long long int num)
 
 int main()
 {
-    int max=0,max_num,cur=0;
+    long int max=0,max_num,cur=0;
     int i;
+    clock_t start, end;
+    double execution_time;
+    start = clock();
     for (i=13; i<1000000;i++)
     {
         cur = collatz(i);
@@ -28,7 +33,10 @@ int main()
             max_num = i;
         }
     }
-    printf("%d", max_num);
+    printf("%ld\n", max_num);
+    end = clock();
+    execution_time = ((double)(end - start))/CLOCKS_PER_SEC;
+    printf("%lf", execution_time);
 
     return 0;
 }
